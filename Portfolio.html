@@ -14,10 +14,42 @@
 	    .error {
 	        color: red;
 	    }
-	.home{}
+.container {
+  position: relative;
+}
+
+.topleft {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  font-size: 18px;
+}
+.topleft2 {
+  position: absolute;
+  top: 1px;
+  left: 300px;
+  font-size: 18px;
+}
+
+.topleft3{
+  position: absolute;
+  top: 1px;
+  left: 500px;
+  font-size: 18px;
+}
+
+	#sameline{display: inline-block;}
 </style>
 <h1><a href="https://maxgannett.github.io/Personal_website" target="_self">Max Gannett</a></h1>
-<h2><a href="https://maxgannett.github.io/About_me" target="_self">About Me/Resume <a href="https://maxgannett.github.io/Portfolio" target="_self">Portfolio <a href="https://maxgannett.github.io/Contact" target="_self">Contact</h2>
+<div class="container">
+  <div class="topleft"><h2> <a class="sameline" href="https://maxgannett.github.io/About_me" target="_self">About Me/Resume</a></h2></div>
+  
+<div class="container">
+	<div class="topleft2"><h2><a class="sameline" href="https://maxgannett.github.io/Portfolio" target="_self">Portfolio</a></h2></div>
+</div>
+<div class="container">
+	<div class="topleft3"><h2><a class="sameline" href="https://maxgannett.github.io/Contact" target="_self">Contact</a></h2></div>
+</div>
 </head>
 </body>
 </html>
