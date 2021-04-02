@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Wa10 Making an interactive map</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/beige.min.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Imbeded online links, plus interactive Map</h3>
+					<p style="color:#749eb2; font-weight:bold;">Max gannett</p>
+					<p style="color:#565A5C">Weekly assignment #10</h5>
+				</section>
+				
+
+				<section>
+					<h2>This is the goal</h2>
+					<object data="https://ucboulder.maps.arcgis.com/apps/webappviewer/index.html?id=5a2dc42d102c454dbf262c07c339dd30" type="application/pdf" width="100%" height="500px"> 
+      				<p>It appears you have an online problem for your browser.
+			        No biggie... you can <a href="https://ucboulder.maps.arcgis.com/apps/webappviewer/index.html?id=5a2dc42d102c454dbf262c07c339dd30">click here to
+			        go to the site.</a></p>  
+			        </object>
+				</section>
+				<section>
+						<h3>Why does this matter to you?</h3>
+						<p>This is important to learn because it allows you to take working online domains and be able to present them in a slide deck. For me in this case I want to present an ArcGIS website that has interactive map capilbities to show in a presentation.</p>
+						<h5>Challenge</h5>
+						<p>How to embeded a website link to show on a presentation that looks clean and doesnt take up the whole space of the slides.</p>
+				</section>
+				<!-- Start of a vertical slide -->
+				<section>
+					<section>
+						<h3>How do you do this?</h3>
+						<pre><code data-trim class="html"  data-line-numbers=1-7|3-4|6-7><script type="text/template">
+							<object data="Your link" type="application" width="100%" height="500px">
+
+							<p>It appears you have an online problem for your browser. 
+							No biggie... you can 
+
+							<a href="Your link"> click here to go to the site.</a></p>
+							</object>
+						</script></code></pre>
+					    </code></pre>
+					</section>
+
+					<section>
+						<p>This line allows you to bring in what ever link from the web and display it. What you doing is using the object notation in hmtl to like the data and display that with the width and height demintions you want. Try fittling with the height on your power point example.</p>
+						<pre><code data-trim class="html"  data-line-numbers=1><script type="text/template">
+							<object data="Your link" type="application" width="100%" height="500px">
+
+							<p>It appears you have an online problem for your browser. 
+							No biggie... you can 
+
+							<a href="Your link"> click here to go to the site.</a></p>
+							</object>
+						</script></code></pre>
+					    </code></pre>
+					</section>
+					<section>
+						<p>The next line is important because if someones internet is having problems or something doesnt load. You want to include a way ot navigate to that link so included that.</p>
+						<pre><code data-trim class="html"  data-line-numbers=3-4><script type="text/template">
+							<object data="Your link" type="application" width="100%" height="500px">
+
+							<p>It appears you have an online problem for your browser. 
+							No biggie... you can 
+
+							<a href="Your link"> click here to go to the site.</a></p>
+							</object>
+						</script></code></pre>
+					    </code></pre>
+					</section>
+
+					<section>
+						<p>Lastly, its the same way in you would close up the object and paragraph by closing all of the called tags. Then you are ready to go!</p>
+						<pre><code data-trim class="html"  data-line-numbers=6-7><script type="text/template">
+							<object data="Your link" type="application" width="100%" height="500px">
+
+							<p>It appears you have an online problem for your browser. 
+							No biggie... you can 
+
+							<a href="Your link"> click here to go to the site.</a></p>
+							</object>
+						</script></code></pre>
+					    </code></pre>
+					</section>
+				</section>
+				<!-- End of a vertical slide -->
+
+				<section>
+					<h2>This should be your end product, but your link you put in! Enjoy!</h2>
+					<object data="https://ucboulder.maps.arcgis.com/apps/webappviewer/index.html?id=5a2dc42d102c454dbf262c07c339dd30" type="application/pdf" width="100%" height="300px"> 
+      				<p>It appears you have an online problem for your browser.
+			        No biggie... you can <a href="https://ucboulder.maps.arcgis.com/apps/webappviewer/index.html?id=5a2dc42d102c454dbf262c07c339dd30">click here to
+			        go to the site.</a></p>  
+			        </object>
+				</section>
+				
+
+				
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/math/math.min.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'h/v',
+				math: {
+				      mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				      config: 'TeX-AMS_HTML-full',
+				      // pass other options into `MathJax.Hub.Config()`
+				      TeX: { Macros: { RR: "{\\bf R}" } }
+				    },
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealHighlight, RevealNotes, RevealMath ]
+			});
+		</script>
+	</body>
+</html>
