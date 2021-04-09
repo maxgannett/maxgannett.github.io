@@ -1,0 +1,279 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Wa11 Vega</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/beige.min.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css" id="highlight-theme">
+		<script src="https://cdn.jsdelivr.net/npm/vega@5.19.1"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.0"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.1"></script>
+    	
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Disastars Death Overtime and Unemployment Vega Datasets embedded</h3>
+					<p style="color:#749eb2; font-weight:bold;">Max gannett</p>
+					<p style="color:#565A5C">Weekly assignment #11</h5>
+				</section>
+				<section>
+					<p>We can see through time that the major disasters that have the most impact on deaths are Drought, Epidemic, and Flood.</p>
+					<p>Suprising enough, Epidemics are interesting to look at overtime because there have been advances in science to curve pandemics</p>
+					<p>Droughts have also matained presense throughout time</p>
+				</section>
+
+				<section>	
+					<div id="vis0"></div>
+					<script type="text/javascript">
+					
+						var spec = {
+						  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+						  "data": {
+						    "url": "https://vega.github.io/vega-datasets/data/disasters.csv"
+						  },
+						  "width": 600,
+						  "height": 400,
+						  "transform": [
+						    {"filter": "datum.Entity !== 'All natural disasters'"}
+						  ],
+						  "mark": {
+						    "type": "circle",
+						    "opacity": 0.8,
+						    "stroke": "black",
+						    "strokeWidth": 1
+						  },
+						  "encoding": {
+						    "x": {
+						      "field": "Year",
+						      "type": "temporal",
+						      "axis": {"grid": false}
+						    },
+						    "y": {"field": "Entity", "type": "nominal", "axis": {"title": ""}},
+						    "size": {
+						      "field": "Deaths",
+						      "type": "quantitative",
+						      "title": "Annual Global Deaths",
+						      "legend": {"clipHeight": 30},
+						      "scale": {"rangeMax": 5000}
+						    },
+						    "color": {"field": "Entity", "type": "nominal", "legend": null}
+						  }
+						};
+						var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+					
+						vegaEmbed("#vis0", spec, opt);
+					
+					</script>
+
+				</section>
+
+				<section>
+					<h5>New Visual</h5>
+					<p>The next visual is a Choropleth of Unemployment Rate per County in the US</p>
+					<p>You can see higher unemployment in more urban poplated counties </p>
+					<p>The south tends to have higher rates as well</p>
+				</section>
+
+				<section>	
+					<div id="vis1"></div>
+					<script type="text/javascript">
+					
+						var spec = {
+						  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+						  "width": 500,
+						  "height": 300,
+						  "data": {
+						    "url": "https://vega.github.io/vega-datasets/data/us-10m.json",
+						    "format": {
+						      "type": "topojson",
+						      "feature": "counties"
+						    }
+						  },
+						  "transform": [{
+						    "lookup": "id",
+						    "from": {
+						      "data": {
+						        "url": "https://vega.github.io/vega-datasets/data/unemployment.tsv"
+						      },
+						      "key": "id",
+						      "fields": ["rate"]
+						    }
+						  }],
+						  "projection": {
+						    "type": "albersUsa"
+						  },
+						  "mark": "geoshape",
+						  "encoding": {
+						    "color": {
+						      "field": "rate",
+						      "type": "quantitative"
+						    }
+						  }
+						};
+
+						var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+					
+						vegaEmbed("#vis1", spec, opt);
+					
+					</script>
+
+				</section>
+				<section>
+					<section>
+						<h3>How do you do this?</h3>
+						<p>Load Contact Delivery Network of Vega</p>
+						<pre><code data-trim class="html"  data-line-numbers=2-4><script type="text/template">
+							<head>
+								<script src="https://cdn.jsdelivr.net/npm/vega@5.19.1">< /script>
+    							<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.0">< /script>
+    							<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.1">< /script>
+							</head>
+					    </script></code></pre>
+					    </code></pre>
+					</section>
+
+					<section>
+						<p>Line 4 is important because this is where you will put your code you get from vega or vega lite, copy and paste that data and close it ;</p>
+						<pre><code data-trim class="html"  data-line-numbers=4><script type="text/template">
+							<body>
+								<div id="vis"></div>
+								<script type="text/javascript">
+									var spec = {};  /* JSON dump of your chart's spec */
+									var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+									vegaEmbed("#vis", spec, opt);
+								< /script>
+							</body>
+						</script></code></pre>
+					    </code></pre>
+					</section>
+
+					<section>
+						<p>Make sure you change the data link to CDN or what I did below to get the data from for the visual,https://vega.github.io/vega-datasets/ </p>
+						<pre><code data-trim class="javascript"  data-line-numbers=3-5><script type="text/template">
+							var spec = {
+						  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+						  "data": {
+						    "url": "https://vega.github.io/vega-datasets/data/disasters.csv"
+						  },
+						  "width": 600,
+						  "height": 400,
+						  "transform": [
+						    {"filter": "datum.Entity !== 'All natural disasters'"}
+						  ],
+						  "mark": {
+						    "type": "circle",
+						    "opacity": 0.8,
+						    "stroke": "black",
+						    "strokeWidth": 1
+						  },
+						  "encoding": {
+						    "x": {
+						      "field": "Year",
+						      "type": "temporal",
+						      "axis": {"grid": false}
+						    },
+						    "y": {"field": "Entity", "type": "nominal", "axis": {"title": ""}},
+						    "size": {
+						      "field": "Deaths",
+						      "type": "quantitative",
+						      "title": "Annual Global Deaths",
+						      "legend": {"clipHeight": 30},
+						      "scale": {"rangeMax": 5000}
+						    },
+						    "color": {"field": "Entity", "type": "nominal", "legend": null}
+						  }
+						};
+						var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+					
+						vegaEmbed("#vis0", spec, opt);
+					
+					< /script>
+						</script></code></pre>
+					    </code></pre>
+					</section>
+				</section>
+				<!-- End of a vertical slide -->
+
+				<section>
+					<h2>This should be your end product, but your own visual you want! Enjoy!</h2>
+					<div id="vis2"></div>
+					<script type="text/javascript">
+					
+						var spec = {
+						  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+						  "width": 500,
+						  "height": 300,
+						  "data": {
+						    "url": "https://vega.github.io/vega-datasets/data/us-10m.json",
+						    "format": {
+						      "type": "topojson",
+						      "feature": "counties"
+						    }
+						  },
+						  "transform": [{
+						    "lookup": "id",
+						    "from": {
+						      "data": {
+						        "url": "https://vega.github.io/vega-datasets/data/unemployment.tsv"
+						      },
+						      "key": "id",
+						      "fields": ["rate"]
+						    }
+						  }],
+						  "projection": {
+						    "type": "albersUsa"
+						  },
+						  "mark": "geoshape",
+						  "encoding": {
+						    "color": {
+						      "field": "rate",
+						      "type": "quantitative"
+						    }
+						  }
+						};
+
+						var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+					
+						vegaEmbed("#vis2", spec, opt);
+					
+					</script>
+
+				</section>
+				
+
+				
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/math/math.min.js"></script>
+		
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'h/v',
+				math: {
+				      mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				      config: 'TeX-AMS_HTML-full',
+				      // pass other options into `MathJax.Hub.Config()`
+				      TeX: { Macros: { RR: "{\\bf R}" } }
+				    },
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealHighlight, RevealNotes, RevealMath ]
+			});
+		</script>
+	</body>
+</html>
